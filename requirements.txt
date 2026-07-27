@@ -5,4 +5,4 @@ pillow==12.3.0
 python-dotenv==1.2.2
 pypdf==5.0.1
 pillow-heif==0.9.3
-pymupdf==1.24.14
+pymupdf==1.26.7
