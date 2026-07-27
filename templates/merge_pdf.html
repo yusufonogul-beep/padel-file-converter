@@ -102,24 +102,24 @@
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>PDF Birleştir</h1>
-        <p>Birden fazla PDF dosyasını tek belgeye birleştirin. Sırayla yükleyin, hepsi birleştirilecek.</p>
+        <h1>Merge PDF Files</h1>
+        <p>Combine multiple PDF documents into one. Select files and merge instantly.</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
             <div class="upload-icon">📄</div>
-            <div class="upload-text">PDF Dosyaları Seç veya Sürükle</div>
-            <div class="upload-hint">2 veya daha fazla PDF seçin. Tüm dosyalar birleştirilecek.</div>
+            <div class="upload-text">Select PDF Files or Drag & Drop</div>
+            <div class="upload-hint">Choose two or more PDF files. All will be merged.</div>
             <input type="file" id="fileInput" name="files" accept=".pdf" multiple required>
         </div>
 
-        <button type="submit" class="submit-btn">Birleştir ve İndir</button>
+        <button type="submit" class="submit-btn">Merge & Download</button>
     </form>
 
     <div class="form-ad">
         <div class="ad-placeholder">
-            📢 Reklam Alanı (Half-page 300x600)
+            📢 Ad Space (300x600)
         </div>
     </div>
 </div>
@@ -129,11 +129,9 @@
         e.preventDefault();
         document.querySelector('.upload-section').classList.add('dragover');
     }
-
     function handleDragLeave(e) {
         document.querySelector('.upload-section').classList.remove('dragover');
     }
-
     function handleDrop(e) {
         e.preventDefault();
         document.querySelector('.upload-section').classList.remove('dragover');

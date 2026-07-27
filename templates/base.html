@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }} - FileConvert</title>
+    <title>Snapverto - Free Online File Converter</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -47,10 +47,22 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 12px;
+        }
+
+        .logo svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
             font-size: 24px;
             font-weight: 700;
             color: #3B82F6;
-            text-decoration: none;
+            letter-spacing: -0.02em;
         }
 
         .nav-main {
@@ -226,6 +238,10 @@
             section {
                 margin-bottom: 32px;
             }
+
+            .logo-text {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -233,11 +249,17 @@
     <header>
         <div class="container">
             <div class="header-inner">
-                <a href="/" class="logo">FileConvert</a>
+                <a href="/" class="logo">
+                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="none">
+                        <rect width="32" height="32" rx="6" fill="#EFF6FF"/>
+                        <path d="M8 16h12M16 10l6 6-6 6" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="logo-text">Snapverto</span>
+                </a>
                 <nav class="nav-main">
-                    <a href="/">Araçlar</a>
-                    <a href="/privacy">Gizlilik</a>
-                    <a href="/terms">Şartlar</a>
+                    <a href="/">Tools</a>
+                    <a href="/privacy">Privacy</a>
+                    <a href="/terms">Terms</a>
                 </nav>
             </div>
         </div>
@@ -263,32 +285,32 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h4>Hakkında</h4>
+                    <h4>About</h4>
                     <ul>
-                        <li><a href="/">Ana Sayfa</a></li>
+                        <li><a href="/">Home</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>Yasal</h4>
+                    <h4>Legal</h4>
                     <ul>
-                        <li><a href="/privacy">Gizlilik Politikası</a></li>
-                        <li><a href="/terms">Kullanım Şartları</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>İletişim</h4>
+                    <h4>Contact</h4>
                     <ul>
-                        <li><a href="mailto:support@fileconvert.pro">Email Gönder</a></li>
+                        <li><a href="mailto:support@snapverto.pro">Send Email</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="ad-banner" style="max-width: 728px; margin: 32px auto;">
-                📢 Reklam Alanı (Footer Leaderboard 728x90)
+                📢 Ad Space (Leaderboard 728x90)
             </div>
 
             <div class="footer-bottom">
-                © 2026 FileConvert. Tüm hakları saklıdır. | <a href="/privacy" style="color: #9CA3AF; text-decoration: underline;">Gizlilik</a> | <a href="/terms" style="color: #9CA3AF; text-decoration: underline;">Şartlar</a>
+                © 2026 Snapverto. All rights reserved. | <a href="/privacy" style="color: #9CA3AF; text-decoration: underline;">Privacy</a> | <a href="/terms" style="color: #9CA3AF; text-decoration: underline;">Terms</a>
             </div>
         </div>
     </footer>
