@@ -1156,6 +1156,19 @@ def image_resize_route():
             cleanup_files(*img_files)
             return render_template('image_resize.html')
 
+
+# ==================== LEGAL PAGES ====================
+
+@app.route('/privacy')
+def privacy():
+    return render_template('privacy.html')
+
+
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=False)

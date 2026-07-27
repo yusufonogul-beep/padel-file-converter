@@ -21,6 +21,7 @@
         color: #6B7280;
     }
 
+    /* Upload Area */
     .upload-section {
         background: #FFFFFF;
         border: 2px dashed #D1D5DB;
@@ -30,6 +31,9 @@
         margin-bottom: 24px;
         cursor: pointer;
         transition: all 200ms;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .upload-section:hover {
@@ -63,6 +67,37 @@
         display: none;
     }
 
+    /* Form */
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #111827;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #D1D5DB;
+        border-radius: 4px;
+        font-size: 14px;
+        transition: border 200ms;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+        outline: none;
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    /* Submit Button */
     .submit-btn {
         width: 100%;
         padding: 12px 24px;
@@ -81,6 +116,56 @@
         background: #1E40AF;
     }
 
+    .submit-btn:active {
+        transform: scale(0.98);
+    }
+
+    /* Result Area */
+    .result-section {
+        background: #ECFDF5;
+        border: 1px solid #A7F3D0;
+        border-radius: 8px;
+        padding: 24px;
+        text-align: center;
+    }
+
+    .result-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+
+    .result-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #065F46;
+        margin-bottom: 8px;
+    }
+
+    .result-text {
+        font-size: 14px;
+        color: #047857;
+        margin-bottom: 16px;
+    }
+
+    .download-btn {
+        display: inline-block;
+        padding: 10px 24px;
+        background: #10B981;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 200ms;
+        border: none;
+        cursor: pointer;
+    }
+
+    .download-btn:hover {
+        background: #059669;
+    }
+
+    /* Ad After Form */
     .form-ad {
         margin: 40px 0;
         text-align: center;
@@ -93,32 +178,36 @@
         padding: 40px;
         color: #9CA3AF;
         font-size: 14px;
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 </style>
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>PDF Birleştir</h1>
-        <p>Birden fazla PDF dosyasını tek belgeye birleştirin. Sırayla yükleyin, hepsi birleştirilecek.</p>
+        <h1>{% block tool_title %}{% endblock %}</h1>
+        <p>{% block tool_description %}{% endblock %}</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
+        <!-- File Upload -->
+        {% block upload_area %}
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
-            <div class="upload-icon">📄</div>
-            <div class="upload-text">PDF Dosyaları Seç veya Sürükle</div>
-            <div class="upload-hint">2 veya daha fazla PDF seçin. Tüm dosyalar birleştirilecek.</div>
-            <input type="file" id="fileInput" name="files" accept=".pdf" multiple required>
+            <div class="upload-icon">📁</div>
+            <div class="upload-text">Dosya Seç veya Sürükle</div>
+            <div class="upload-hint">Desteklenen formatlar burada belirtilmiştir</div>
+            <input type="file" id="fileInput" name="file" required>
         </div>
+        {% endblock %}
 
-        <button type="submit" class="submit-btn">Birleştir ve İndir</button>
+        <!-- Form Options -->
+        {% block form_options %}{% endblock %}
+
+        <!-- Submit -->
+        <button type="submit" class="submit-btn">Dönüştür</button>
     </form>
 
+    <!-- Ad Area -->
     <div class="form-ad">
-        <div class="ad-placeholder">
+        <div class="ad-placeholder" style="height: 300px; display: flex; align-items: center; justify-content: center;">
             📢 Reklam Alanı (Half-page 300x600)
         </div>
     </div>
@@ -137,7 +226,8 @@
     function handleDrop(e) {
         e.preventDefault();
         document.querySelector('.upload-section').classList.remove('dragover');
-        document.getElementById('fileInput').files = e.dataTransfer.files;
+        const files = e.dataTransfer.files;
+        document.getElementById('fileInput').files = files;
     }
 </script>
 

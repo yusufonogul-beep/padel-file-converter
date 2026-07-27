@@ -1,264 +1,286 @@
 {% extends "base.html" %}
 {% block content %}
-<!-- Hero Section with gradient -->
-<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 rounded-2xl mb-12">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Profesyonel Dosya Dönüştürücü</h1>
-        <p class="text-xl opacity-90 mb-8 max-w-3xl mx-auto">PDF, Word ve resim dosyalarınızı ücretsiz dönüştürün. 14+ araç ile iLovePDF ve FreePDFConvert gibi profesyonel çözüm.</p>
-        <div class="flex flex-wrap gap-4 justify-center">
-            <div class="bg-white/20 px-5 py-3 rounded-full text-lg font-medium">📄 PDF İşlemleri</div>
-            <div class="bg-white/20 px-5 py-3 rounded-full text-lg font-medium">🖼️ Resim Dönüşümü</div>
-            <div class="bg-white/20 px-5 py-3 rounded-full text-lg font-medium">🔐 Şifre Yönetimi</div>
-            <div class="bg-white/20 px-5 py-3 rounded-full text-lg font-medium">⚡ Toplu İşlemler</div>
-        </div>
-    </div>
-</div>
-
-<!-- Categories Navigation (iLovePDF style) -->
-<div class="mb-12">
-    <div class="flex flex-wrap gap-3 justify-center mb-8">
-        <button class="category-tab active" data-category="all">Tüm Araçlar</button>
-        <button class="category-tab" data-category="organize">📁 Organizasyon</button>
-        <button class="category-tab" data-category="optimize">📦 Optimizasyon</button>
-        <button class="category-tab" data-category="convert">🔄 Dönüşüm</button>
-        <button class="category-tab" data-category="security">🔐 Güvenlik</button>
-        <button class="category-tab" data-category="image">🖼️ Resim</button>
-    </div>
-
-    <!-- PDF Organization Tools -->
-    <div class="mb-12" id="organize-category">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-base mr-3">📁</span>
-            PDF Organizasyonu
-        </h3>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="tool-card" data-categories="organize">
-                <div class="text-3xl mb-4">📄</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF Birleştir</h4>
-                <p class="text-gray-600 mb-4">Birden fazla PDF'i tek dosyada birleştirin.</p>
-                <a href="/merge-pdf" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="organize">
-                <div class="text-3xl mb-4">✂️</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF Böl</h4>
-                <p class="text-gray-600 mb-4">PDF'i sayfalara veya sayfa aralıklarına ayırın.</p>
-                <a href="/split-pdf" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="organize">
-                <div class="text-3xl mb-4">🔄</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF Döndür</h4>
-                <p class="text-gray-600 mb-4">PDF sayfalarını 90/180/270 derece döndürün.</p>
-                <a href="/rotate-pdf" class="btn-primary">Kullan</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- PDF Optimization Tools -->
-    <div class="mb-12" id="optimize-category">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full text-base mr-3">📦</span>
-            PDF Optimizasyonu
-        </h3>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="tool-card" data-categories="optimize">
-                <div class="text-3xl mb-4">📉</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF Sıkıştır</h4>
-                <p class="text-gray-600 mb-4">PDF dosya boyutunu kalite ayarıyla küçültün.</p>
-                <a href="/compress-pdf" class="btn-primary">Kullan</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- PDF Conversion Tools -->
-    <div class="mb-12" id="convert-category">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-base mr-3">🔄</span>
-            PDF Dönüşümleri
-        </h3>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="tool-card" data-categories="convert">
-                <div class="text-3xl mb-4">📝</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF → Word</h4>
-                <p class="text-gray-600 mb-4">PDF belgelerini düzenlenebilir Word'e dönüştürün.</p>
-                <a href="/pdf-to-word" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="convert">
-                <div class="text-3xl mb-4">📄</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">Word → PDF</h4>
-                <p class="text-gray-600 mb-4">Word belgelerinizi profesyonel PDF'e dönüştürün.</p>
-                <a href="/word-to-pdf" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="convert">
-                <div class="text-3xl mb-4">🖼️</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF → JPG</h4>
-                <p class="text-gray-600 mb-4">Her PDF sayfasını ayrı JPG resmine dönüştürün.</p>
-                <a href="/pdf-to-jpg" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="convert">
-                <div class="text-3xl mb-4">📸</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">JPG → PDF</h4>
-                <p class="text-gray-600 mb-4">Birden fazla resmi tek PDF'te birleştirin.</p>
-                <a href="/jpg-to-pdf" class="btn-primary">Kullan</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- PDF Security Tools -->
-    <div class="mb-12" id="security-category">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span class="bg-red-100 text-red-800 px-4 py-2 rounded-full text-base mr-3">🔐</span>
-            PDF Güvenliği
-        </h3>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="tool-card" data-categories="security">
-                <div class="text-3xl mb-4">🔓</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF Şifre Kaldır</h4>
-                <p class="text-gray-600 mb-4">Şifreli PDF'ten şifreyi kaldırın (şifre gerekir).</p>
-                <a href="/pdf-password-remove" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="security">
-                <div class="text-3xl mb-4">🔒</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">PDF Şifrele</h4>
-                <p class="text-gray-600 mb-4">PDF'inize şifre ekleyin, yetkisiz erişimi engelleyin.</p>
-                <a href="/pdf-password-protect" class="btn-primary">Kullan</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Image Tools -->
-    <div class="mb-12" id="image-category">
-        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-            <span class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full text-base mr-3">🖼️</span>
-            Resim İşlemleri
-        </h3>
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="tool-card" data-categories="image">
-                <div class="text-3xl mb-4">📱</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">HEIC → JPG</h4>
-                <p class="text-gray-600 mb-4">iPhone HEIC fotoğraflarını JPG'ye dönüştürün.</p>
-                <a href="/heic-to-jpg" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="image">
-                <div class="text-3xl mb-4">📏</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">Toplu Yeniden Boyutlandır</h4>
-                <p class="text-gray-600 mb-4">Birden fazla resmin boyutunu piksel/yüzde ile değiştirin.</p>
-                <a href="/image-resize" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="image">
-                <div class="text-3xl mb-4">🖌️</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">Resim Dönüştürücü</h4>
-                <p class="text-gray-600 mb-4">PNG, JPG, WebP, GIF, BMP, TIFF arası dönüşüm.</p>
-                <a href="/image-converter" class="btn-primary">Kullan</a>
-            </div>
-            <div class="tool-card" data-categories="image">
-                <div class="text-3xl mb-4">📦</div>
-                <h4 class="text-xl font-semibold text-gray-800 mb-3">Resim Sıkıştırıcı</h4>
-                <p class="text-gray-600 mb-4">Resim dosyalarını kalite kaybını minimize ederek küçültün.</p>
-                <a href="/image-compressor" class="btn-primary">Kullan</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Statistics Banner -->
-<div class="bg-gradient-to-r from-emerald-600 to-teal-500 text-white py-10 rounded-2xl mb-12">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-        <h3 class="text-2xl font-bold mb-6">📊 Platform İstatistikleri</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div class="text-center">
-                <div class="text-4xl font-bold">14+</div>
-                <div class="text-lg opacity-90">Profesyonel Araç</div>
-            </div>
-            <div class="text-center">
-                <div class="text-4xl font-bold">5</div>
-                <div class="text-lg opacity-90">Kategori</div>
-            </div>
-            <div class="text-center">
-                <div class="text-4xl font-bold">∞</div>
-                <div class="text-lg opacity-90">Sınırsız Kullanım</div>
-            </div>
-            <div class="text-center">
-                <div class="text-4xl font-bold">100%</div>
-                <div class="text-lg opacity-90">Güvenli</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Ad-supported free service banner -->
-<div class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-10 rounded-2xl">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-        <h3 class="text-2xl font-bold mb-4">🎯 Tamamen Ücretsiz & Reklam Destekli</h3>
-        <p class="text-lg opacity-90 mb-6">Tüm araçlarımız tamamen ücretsiz - reklam gelirleriyle destekleniyoruz. Premium ücret yok!</p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <div class="bg-white/20 px-5 py-3 rounded-full font-medium">✅ SSL Şifreleme</div>
-            <div class="bg-white/20 px-5 py-3 rounded-full font-medium">✅ Otomatik Dosya Silme</div>
-            <div class="bg-white/20 px-5 py-3 rounded-full font-medium">✅ Gizlilik Garantisi</div>
-            <div class="bg-white/20 px-5 py-3 rounded-full font-medium">✅ Sınırsız Boyut</div>
-        </div>
-    </div>
-</div>
 
 <style>
-    .category-tab {
-        @apply px-5 py-3 rounded-full text-sm font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition-colors cursor-pointer;
+    /* Hero */
+    .hero {
+        text-align: center;
+        padding: 64px 16px;
+        background: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+        border-radius: 12px;
+        margin-bottom: 64px;
     }
-    .category-tab.active {
-        @apply bg-blue-600 text-white hover:bg-blue-700;
+
+    .hero h1 {
+        font-size: 40px;
+        margin-bottom: 16px;
+        color: #111827;
     }
+
+    .hero p {
+        font-size: 18px;
+        color: #6B7280;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Tool Grid */
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 24px;
+        margin-bottom: 48px;
+    }
+
     .tool-card {
-        @apply bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 text-center;
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        padding: 24px;
+        transition: all 200ms;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tool-card:hover {
+        border-color: #3B82F6;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+    }
+
+    .tool-icon {
+        font-size: 32px;
+        margin-bottom: 12px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+    }
+
+    .tool-card h3 {
+        margin-bottom: 8px;
+        font-size: 18px;
+    }
+
+    .tool-card p {
+        font-size: 14px;
+        color: #6B7280;
+        margin-bottom: 16px;
+        flex-grow: 1;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #3B82F6;
+        color: #FFFFFF;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 200ms;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        align-self: flex-start;
+    }
+
+    .btn:hover {
+        background: #1E40AF;
+    }
+
+    /* Category Title */
+    .category-title {
+        font-size: 20px;
+        font-weight: 700;
+        margin-top: 48px;
+        margin-bottom: 24px;
+        color: #111827;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .category-badge {
+        display: inline-block;
+        background: #EFF6FF;
+        color: #1E40AF;
+        padding: 4px 12px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Ad Section */
+    .ad-section {
+        margin: 48px 0;
+        text-align: center;
+    }
+
+    .ad-grid-placeholder {
+        background: #F3F4F6;
+        border: 2px dashed #D1D5DB;
+        border-radius: 8px;
+        padding: 40px;
+        color: #9CA3AF;
+        font-size: 14px;
     }
 </style>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const tabs = document.querySelectorAll('.category-tab');
-        const toolCards = document.querySelectorAll('.tool-card');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', function() {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                // Add active class to clicked tab
-                this.classList.add('active');
-                
-                const category = this.dataset.category;
-                
-                // Show/hide tool cards based on category
-                toolCards.forEach(card => {
-                    if (category === 'all') {
-                        card.parentElement.parentElement.style.display = 'block';
-                        card.style.display = 'block';
-                    } else {
-                        const categories = card.dataset.categories.split(' ');
-                        if (categories.includes(category)) {
-                            card.parentElement.parentElement.style.display = 'block';
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                            // Hide the parent category section if all cards are hidden
-                            const section = card.closest('.mb-12');
-                            if (section) {
-                                const visibleCards = section.querySelectorAll('.tool-card[style*="block"], .tool-card:not([style*="none"])');
-                                if (visibleCards.length === 0) {
-                                    section.style.display = 'none';
-                                } else {
-                                    section.style.display = 'block';
-                                }
-                            }
-                        }
-                    }
-                });
-                
-                // Reset all sections when 'all' is selected
-                if (category === 'all') {
-                    document.querySelectorAll('.mb-12').forEach(section => {
-                        section.style.display = 'block';
-                    });
-                }
-            });
-        });
-    });
-</script>
+<!-- Hero Section -->
+<section class="hero">
+    <h1>Dosya Dönüşüm Araçları</h1>
+    <p>PDF, Word ve resim dosyalarınızı anında, ücretsiz olarak dönüştürün. Reklam destekli, gizliliğiniz korumalı.</p>
+</section>
+
+<!-- Header Ad -->
+<div class="ad-section">
+    <div class="ad-grid-placeholder" style="height: 100px; display: flex; align-items: center; justify-content: center;">
+        📢 Reklam Alanı (Leaderboard 728x90)
+    </div>
+</div>
+
+<!-- PDF Tools -->
+<div id="pdf-tools">
+    <div class="category-title">
+        <span class="category-badge">📄 PDF</span>
+        PDF Araçları
+    </div>
+
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">📋</div>
+            <h3>PDF Birleştir</h3>
+            <p>Birden fazla PDF dosyasını tek bir belgeye birleştirin. Sıra önemlidir.</p>
+            <a href="/merge-pdf" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">✂️</div>
+            <h3>PDF Böl</h3>
+            <p>PDF'nin belirli sayfalarını ayrıştırarak bağımsız dosyalar oluşturun.</p>
+            <a href="/split-pdf" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">📉</div>
+            <h3>PDF Sıkıştır</h3>
+            <p>PDF dosya boyutunu kaliteden taviz vermeden küçültün. Depolama tasarrufu yapın.</p>
+            <a href="/compress-pdf" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🔓</div>
+            <h3>Şifre Kaldır</h3>
+            <p>Şifreli PDF dosyalarından korumayı kaldırın. Şifreyi sağlamanız gerekir.</p>
+            <a href="/pdf-password-remove" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🔒</div>
+            <h3>Şifre Ekle</h3>
+            <p>PDF dosyalarınızı şifre ile yedekleyin. Yetkisiz erişimi engelleyin.</p>
+            <a href="/pdf-password-protect" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🔄</div>
+            <h3>Döndür</h3>
+            <p>PDF sayfalarını 90, 180 veya 270 derece döndürün. Hızlı ve kolay.</p>
+            <a href="/rotate-pdf" class="btn">Aç</a>
+        </div>
+    </div>
+</div>
+
+<!-- Mid-grid Ad -->
+<div class="ad-section">
+    <div class="ad-grid-placeholder" style="height: 280px; display: flex; align-items: center; justify-content: center;">
+        📢 Reklam Alanı (Medium Rectangle 300x250)
+    </div>
+</div>
+
+<!-- Conversion Tools -->
+<div id="conversion-tools">
+    <div class="category-title">
+        <span class="category-badge">🔄 Dönüşüm</span>
+        Dosya Dönüşümleri
+    </div>
+
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">📄→📝</div>
+            <h3>PDF → Word</h3>
+            <p>PDF belgeleri düzenlenebilir Word formatına dönüştürün. Metin korunur.</p>
+            <a href="/pdf-to-word" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">📝→📄</div>
+            <h3>Word → PDF</h3>
+            <p>Word belgelerinizi evrensel PDF formatına dönüştürün. Profesyonel görünüm.</p>
+            <a href="/word-to-pdf" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">📄↔️🖼️</div>
+            <h3>PDF → JPG</h3>
+            <p>PDF'in her sayfasını ayrı JPG görüntüsüne dönüştürün. Yüksek kalite.</p>
+            <a href="/pdf-to-jpg" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🖼️→📄</div>
+            <h3>JPG → PDF</h3>
+            <p>Bir veya birden fazla resmi tek PDF dosyasında birleştirin.</p>
+            <a href="/jpg-to-pdf" class="btn">Aç</a>
+        </div>
+    </div>
+</div>
+
+<!-- Image Tools -->
+<div id="image-tools">
+    <div class="category-title">
+        <span class="category-badge">🖼️ Resim</span>
+        Resim Araçları
+    </div>
+
+    <div class="tools-grid">
+        <div class="tool-card">
+            <div class="tool-icon">📱→🖼️</div>
+            <h3>HEIC → JPG</h3>
+            <p>iPhone'dan HEIC fotoğraflarını JPG'ye dönüştürün. Her cihazda uyumlu.</p>
+            <a href="/heic-to-jpg" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">📏</div>
+            <h3>Yeniden Boyutlandır</h3>
+            <p>Birden fazla resmi aynı anda yeniden boyutlandırın. Oran korunur veya sabitlenir.</p>
+            <a href="/image-resize" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">🎨</div>
+            <h3>Dönüştürücü</h3>
+            <p>PNG, JPG, WebP, GIF arası dönüştürme. Hızlı ve kaliteli.</p>
+            <a href="/image-converter" class="btn">Aç</a>
+        </div>
+
+        <div class="tool-card">
+            <div class="tool-icon">📦</div>
+            <h3>Sıkıştırıcı</h3>
+            <p>Resim dosyalarını kaliteden taviz vermeden küçültün.</p>
+            <a href="/image-compressor" class="btn">Aç</a>
+        </div>
+    </div>
+</div>
+
+<!-- Post-tools Ad -->
+<div class="ad-section">
+    <div class="ad-grid-placeholder" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+        📢 Reklam Alanı (Half-page 300x600)
+    </div>
+</div>
+
 {% endblock %}
