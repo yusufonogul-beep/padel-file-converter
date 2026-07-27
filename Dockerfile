@@ -43,3 +43,4 @@ ENV PORT=8000
 
 # Run the application with gunicorn
 CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8000} app:app"]
+# Trigger rebuild
