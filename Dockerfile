@@ -45,3 +45,4 @@ ENV PORT=8000
 CMD ["sh", "-c", "gunicorn --bind 0.0.0.0:${PORT:-8000} app:app"]
 # Trigger rebuild
 # Rebuild trigger at Mon Jul 27 12:49:49 UTC 2026
+# Rebuild trigger: Mon Jul 27 14:25:24 UTC 2026
