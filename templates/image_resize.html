@@ -1,60 +1,69 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="max-w-2xl mx-auto">
-    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Toplu Resim Yeniden Boyutlandır</h1>
-    <p class="text-center text-gray-600 mb-6">
-        Birden fazla resmin boyutunu aynı anda değiştirin. Piksel, piksel veya yüzde ile.
-    </p>
 
-    <!-- Ad Slot: Header Banner -->
-    <div class="mb-8">
-        <div class="bg-gray-100 h-16 flex items-center justify-center rounded-md">
-            <span class="text-gray-500 text-sm">Reklam Alanı (Leaderboard)</span>
-        </div>
+<style>
+    .converter-layout { max-width: 600px; margin: 0 auto; }
+    .converter-header { text-align: center; margin-bottom: 40px; }
+    .converter-header h1 { margin-bottom: 8px; }
+    .converter-header p { font-size: 14px; color: #6B7280; }
+    .upload-section { background: #FFFFFF; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: all 200ms; }
+    .upload-section:hover { border-color: #3B82F6; background: #F0F9FF; }
+    .upload-section.dragover { border-color: #3B82F6; background: #F0F9FF; }
+    .upload-icon { font-size: 48px; margin-bottom: 12px; }
+    .upload-text { font-size: 16px; font-weight: 500; color: #111827; margin-bottom: 4px; }
+    .upload-hint { font-size: 14px; color: #6B7280; }
+    input[type="file"] { display: none; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #111827; }
+    .form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
+    .form-group input:focus, .form-group select:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
+    .submit-btn:hover { background: #1E40AF; }
+    .form-ad { margin: 40px 0; text-align: center; }
+    .ad-placeholder { background: #F3F4F6; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; color: #9CA3AF; font-size: 14px; height: 300px; display: flex; align-items: center; justify-content: center; }
+</style>
+
+<div class="converter-layout">
+    <div class="converter-header">
+        <h1>Resim Yeniden Boyutlandır</h1>
+        <p>Birden fazla resmi aynı anda yeniden boyutlandırın. Oran korunur veya sabitlenir.</p>
     </div>
 
-    <form action="/image-resize" method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
-        <div class="mb-4">
-            <label for="imgFiles" class="block text-sm font-medium text-gray-700 mb-2">Resim Dosyalarınızı Seçin (Birden Fazla)</label>
-            <input type="file" name="files" id="imgFiles" accept=".png,.jpg,.jpeg,.gif,.bmp,.tiff,.webp,.heic,.heif" multiple required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100">
+    <form method="post" enctype="multipart/form-data">
+        <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
+            <div class="upload-icon">📏</div>
+            <div class="upload-text">Resim Dosyaları Seç veya Sürükle</div>
+            <div class="upload-hint">PNG, JPG, GIF, WebP yükleyebilirsiniz</div>
+            <input type="file" id="fileInput" name="files" accept=".png,.jpg,.jpeg,.gif,.bmp,.webp" multiple required>
         </div>
 
-        <div class="mb-4 p-4 bg-gray-50 rounded-md">
-            <p class="text-sm font-medium text-gray-700 mb-3">Yeniden Boyutlandırma Yöntemi (Birini Seçin)</p>
-            
-            <div class="grid gap-3 sm:grid-cols-3">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Genişlik (px)</label>
-                    <input type="number" name="width" min="1" placeholder="Örn: 800" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Yükseklik (px)</label>
-                    <input type="number" name="height" min="1" placeholder="Örn: 600" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Yüzde (%)</label>
-                    <input type="number" name="percentage" min="1" max="1000" placeholder="Örn: 50" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
-                </div>
-            </div>
-            <p class="text-xs text-gray-500 mt-2">
-                <strong>Kurallar:</strong> 
-                Sadece genişlik → oran korunur. 
-                Sadece yükseklik → oran korunur. 
-                Her ikisi → tam boyut (oran bozulabilir). 
-                Yüzde → orijinal boyutun o kadarı.
-            </p>
+        <div class="form-group">
+            <label>Genişlik (px, isteğe bağlı)</label>
+            <input type="number" name="width" min="1">
         </div>
 
-        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
-            Yeniden Boyutlandır ve ZIP İndir
-        </button>
+        <div class="form-group">
+            <label>Yükseklik (px, isteğe bağlı)</label>
+            <input type="number" name="height" min="1">
+        </div>
+
+        <div class="form-group">
+            <label>Ölçek (%, isteğe bağlı)</label>
+            <input type="number" name="percentage" min="1" max="500">
+        </div>
+
+        <button type="submit" class="submit-btn">Yeniden Boyutlandır ve İndir</button>
     </form>
 
-    <!-- Ad Slot: Inline Rectangle -->
-    <div class="mt-8">
-        <div class="bg-gray-100 h-48 flex items-center justify-center rounded-md">
-            <span class="text-gray-500 text-sm">Reklam Alanı (Rectangle)</span>
-        </div>
+    <div class="form-ad">
+        <div class="ad-placeholder">📢 Reklam Alanı (300x600)</div>
     </div>
 </div>
+
+<script>
+    function handleDragOver(e) { e.preventDefault(); document.querySelector('.upload-section').classList.add('dragover'); }
+    function handleDragLeave(e) { document.querySelector('.upload-section').classList.remove('dragover'); }
+    function handleDrop(e) { e.preventDefault(); document.querySelector('.upload-section').classList.remove('dragover'); document.getElementById('fileInput').files = e.dataTransfer.files; }
+</script>
+
 {% endblock %}
