@@ -14,6 +14,13 @@ RUN apt-get update && \
         libreoffice-core \
         fonts-dejavu-core \
         fonts-liberation \
+        libheif-dev \
+        libfreetype6-dev \
+        libjpeg-dev \
+        libopenjp2-7-dev \
+        libpng-dev \
+        libtiff-dev \
+        zlib1g-dev \
         # Clean up apt cache to reduce image size
     && rm -rf /var/lib/apt/lists/*
 

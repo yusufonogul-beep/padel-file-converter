@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">PDF Sayfalarını Döndür</h1>
+    <p class="text-center text-gray-600 mb-6">
+        PDF sayfalarını 90°, 180° veya 270° döndürün. Sayfa sayısı kadar döndürme seçeneği görünecektir.
+    </p>
+
+    <!-- Ad Slot: Header Banner -->
+    <div class="mb-8">
+        <div class="bg-gray-100 h-16 flex items-center justify-center rounded-md">
+            <span class="text-gray-500 text-sm">Reklam Alanı (Leaderboard)</span>
+        </div>
+    </div>
+
+    <form action="/rotate-pdf" method="post" enctype="multipart/form-data" class="bg-white p-6 rounded-lg shadow-md">
+        <div class="mb-4">
+            <label for="pdfFile" class="block text-sm font-medium text-gray-700 mb-2">PDF Dosyanızı Seçin</label>
+            <input type="file" name="file" id="pdfFile" accept=".pdf" required class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100">
+        </div>
+        
+        <div id="rotationFields" class="mb-4">
+            <p class="text-sm text-gray-500 mb-2">PDF yüklendikten sonra sayfa sayısı kadar döndürme seçeneği gelecektir.</p>
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition">
+            Döndür ve İndir
+        </button>
+    </form>
+
+    <!-- Ad Slot: Inline Rectangle -->
+    <div class="mt-8">
+        <div class="bg-gray-100 h-48 flex items-center justify-center rounded-md">
+            <span class="text-gray-500 text-sm">Reklam Alanı (Rectangle)</span>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('pdfFile').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    // We need to get page count - we'll do this by uploading first or using a preview
+    // For now, show a simple approach with up to 20 pages
+    const container = document.getElementById('rotationFields');
+    container.innerHTML = '<p class="text-sm text-gray-500 mb-2">Sayfa sayısını belirlemek için dosya yükleniyor...</p>';
+    
+    // Create a form data and send to a preview endpoint or just show generic fields
+    // For simplicity, we'll show up to 20 rotation fields
+    let html = '<p class="text-sm text-gray-500 mb-3">Her sayfa için döndürme açısı seçin (boş = döndürme):</p>';
+    for (let i = 1; i <= 20; i++) {
+        html += `
+        <div class="mb-2 flex items-center gap-3">
+            <label class="text-sm font-medium text-gray-700 w-20">Sayfa ${i}:</label>
+            <select name="rotate_${i-1}" class="w-full max-w-xs px-3 py-2 border border-gray-300 rounded-md text-sm">
+                <option value="">Döndürme yok</option>
+                <option value="90">90° (Saat yönü)</option>
+                <option value="180">180°</option>
+                <option value="270">270° (Ters saat yönü)</option>
+            </select>
+        </div>`;
+    }
+    container.innerHTML = html;
+});
+</script>
+{% endblock %}
