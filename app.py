@@ -1155,6 +1155,8 @@ def image_resize_route():
             flash(f'Yeniden boyutlandırma hatası: {str(e)}', 'error')
             cleanup_files(*img_files)
             return render_template('image_resize.html')
+    
+    return render_template('image_resize.html')
 
 
 # ==================== LEGAL PAGES ====================
