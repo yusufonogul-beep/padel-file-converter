@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="text-center">
-    <h2 class="text-2xl font-bold text-gray-800 mb-6">Profesyonel Dosya Dönüştürücü - TEST</h2>
-    <p class="mb-8 text-gray-600 max-w-xl mx-auto">
-        PDF'den Word'e, Word'den PDF'ye, resim formatları arası dönüşüm ve gelişmiş PDF/resim araçları.
-        Reklam destekli ücretsiz hizmetimizle dosyalarınızı çevrimiçi olarak dönüştürün.
-    </p>
+<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 rounded-xl mb-8">
+    <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold mb-4">Profesyonel Dosya Dönüştürücü</h2>
+        <p class="text-lg opacity-90 mb-6">PDF, Word ve resim dosyalarınızı profesyonel kalitede dönüştürün. 14+ araç ile tam çözüm.</p>
+        <div class="flex flex-wrap gap-4 justify-center">
+            <div class="bg-white/10 px-4 py-2 rounded-full text-sm">📄 PDF İşlemleri</div>
+            <div class="bg-white/10 px-4 py-2 rounded-full text-sm">🖼️ Resim Dönüşümleri</div>
+            <div class="bg-white/10 px-4 py-2 rounded-full text-sm">🔑 Şifre Yönetimi</div>
+            <div class="bg-white/10 px-4 py-2 rounded-full text-sm">⚙️ Toplu İşlemler</div>
+        </div>
+    </div>
 </div>
 
 <!-- PDF Araçları -->
@@ -16,61 +21,61 @@
     </h3>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <!-- Merge PDF -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF Birleştir</h4>
             <p class="text-gray-600 mb-4">Birden fazla PDF'i tek dosyada birleştirin.</p>
             <a href="/merge-pdf" class="btn-primary">Kullan</a>
         </div>
         <!-- Split PDF -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF Böl</h4>
             <p class="text-gray-600 mb-4">PDF'i sayfalara veya sayfa aralıklarına ayırın.</p>
             <a href="/split-pdf" class="btn-primary">Kullan</a>
         </div>
         <!-- Compress PDF -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF Sıkıştır</h4>
             <p class="text-gray-600 mb-4">PDF dosya boyutunu kalite ayarıyla küçültün.</p>
             <a href="/compress-pdf" class="btn-primary">Kullan</a>
         </div>
         <!-- PDF Password Remove -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF Şifre Kaldır</h4>
             <p class="text-gray-600 mb-4">Şifreli PDF'ten şifreyi kaldırın (şifre gerekir).</p>
             <a href="/pdf-password-remove" class="btn-primary">Kullan</a>
         </div>
         <!-- PDF Password Protect -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF Şifrele</h4>
             <p class="text-gray-600 mb-4">PDF'inize şifre ekleyin, yetkisiz erişimi engelleyin.</p>
             <a href="/pdf-password-protect" class="btn-primary">Kullan</a>
         </div>
         <!-- PDF to JPG -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF → JPG</h4>
             <p class="text-gray-600 mb-4">Her PDF sayfasını ayrı JPG resmine dönüştürün.</p>
             <a href="/pdf-to-jpg" class="btn-primary">Kullan</a>
         </div>
         <!-- JPG to PDF -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">JPG → PDF</h4>
             <p class="text-gray-600 mb-4">Birden fazla resmi tek PDF'te birleştirin.</p>
             <a href="/jpg-to-pdf" class="btn-primary">Kullan</a>
         </div>
         <!-- Rotate PDF -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF Döndür</h4>
             <p class="text-gray-600 mb-4">PDF sayfalarını 90/180/270 derece döndürün.</p>
             <a href="/rotate-pdf" class="btn-primary">Kullan</a>
         </div>
         <!-- PDF to Word -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">PDF → Word</h4>
             <p class="text-gray-600 mb-4">PDF belgelerini düzenlenebilir Word'e dönüştürün.</p>
             <a href="/pdf-to-word" class="btn-primary">Kullan</a>
         </div>
         <!-- Word to PDF -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">Word → PDF</h4>
             <p class="text-gray-600 mb-4">Word belgelerinizi profesyonel PDF'e dönüştürün.</p>
             <a href="/word-to-pdf" class="btn-primary">Kullan</a>
@@ -78,7 +83,30 @@
     </div>
 </div>
 
-<!-- Resim Araçları -->
+<div class="bg-gradient-to-r from-green-600 to-emerald-500 text-white py-8 rounded-xl mb-8">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold mb-4">💻 14+ Profesyonel Araç</h3>
+        <p class="text-lg opacity-90 mb-6">İhtiyacınız olan tüm dosya dönüşüm ve işlem araçları tek platformda</p>
+        <div class="flex flex-wrap gap-6 justify-center">
+            <div class="text-center">
+                <div class="text-2xl font-bold">11</div>
+                <div class="text-sm opacity-80">PDF Aracı</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold">4</div>
+                <div class="text-sm opacity-80">Resim Aracı</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold">2</div>
+                <div class="text-sm opacity-80">Şifre Aracı</div>
+            </div>
+            <div class="text-center">
+                <div class="text-2xl font-bold">3</div>
+                <div class="text-sm opacity-80">Toplu İşlem</div>
+            </div>
+        </div>
+    </div>
+</div>
 <div>
     <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center">
         <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm mr-3">Resim Araçları</span>
@@ -86,25 +114,25 @@
     </h3>
     <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <!-- HEIC to JPG -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">HEIC → JPG</h4>
             <p class="text-gray-600 mb-4">iPhone HEIC fotoğraflarını JPG'ye dönüştürün.</p>
             <a href="/heic-to-jpg" class="btn-primary">Kullan</a>
         </div>
         <!-- Image Resize -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">Toplu Yeniden Boyutlandır</h4>
             <p class="text-gray-600 mb-4">Birden fazla resmin boyutunu piksel/yüzde ile değiştirin.</p>
             <a href="/image-resize" class="btn-primary">Kullan</a>
         </div>
         <!-- Image Converter -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">Resim Dönüştürücü</h4>
             <p class="text-gray-600 mb-4">PNG, JPG, WebP, GIF, BMP, TIFF arası dönüşüm.</p>
             <a href="/image-converter" class="btn-primary">Kullan</a>
         </div>
         <!-- Image Compressor -->
-        <div class="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
+        <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100">
             <h4 class="text-lg font-semibold text-gray-800 mb-3">Resim Sıkıştırıcı</h4>
             <p class="text-gray-600 mb-4">Resim dosyalarını kalite kaybını minimize ederek küçültün.</p>
             <a href="/image-compressor" class="btn-primary">Kullan</a>
@@ -112,10 +140,15 @@
     </div>
 </div>
 
-<!-- Ad Slot: Footer Banner -->
-<div class="mt-12">
-    <div class="bg-gray-100 h-16 flex items-center justify-center rounded-md">
-        <span class="text-gray-500 text-sm">Reklam Alanı (Footer Banner)</span>
+<div class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-6 rounded-xl mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h3 class="text-xl font-bold mb-4">📢 Reklam Destekli Ücretsiz Hizmet</h3>
+        <p class="opacity-90 mb-4">Tüm araçlarımız tamamen ücretsiz - reklam gelirleriyle destekleniyoruz</p>
+        <div class="flex justify-center gap-4">
+            <div class="bg-white/20 px-4 py-2 rounded-full text-sm">✅ Sınırsız Kullanım</div>
+            <div class="bg-white/20 px-4 py-2 rounded-full text-sm">✅ Dosya Boyut Sınırı Yok</div>
+            <div class="bg-white/20 px-4 py-2 rounded-full text-sm">✅ Gizlilik Garantisi</div>
+        </div>
     </div>
 </div>
 {% endblock %}
