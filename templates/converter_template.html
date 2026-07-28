@@ -192,8 +192,8 @@
         {% block upload_area %}
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
             <div class="upload-icon">📁</div>
-            <div class="upload-text">Dosya Seç veya Sürükle</div>
-            <div class="upload-hint">Desteklenen formatlar burada belirtilmiştir</div>
+            <div class="upload-text">Select File or Drag & Drop</div>
+            <div class="upload-hint">Supported formats are specified here</div>
             <input type="file" id="fileInput" name="file" required>
         </div>
         {% endblock %}
@@ -202,13 +202,13 @@
         {% block form_options %}{% endblock %}
 
         <!-- Submit -->
-        <button type="submit" class="submit-btn">Dönüştür</button>
+        <button type="submit" class="submit-btn">Convert</button>
     </form>
 
     <!-- Ad Area -->
     <div class="form-ad">
         <div class="ad-placeholder" style="height: 300px; display: flex; align-items: center; justify-content: center;">
-            📢 Reklam Alanı (Half-page 300x600)
+            📢 Ad Space (Half-page 300x600)
         </div>
     </div>
 </div>

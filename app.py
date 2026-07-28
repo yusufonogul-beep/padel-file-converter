@@ -512,9 +512,9 @@ def remove_pdf_password(input_path, output_path, password):
         try:
             reader.decrypt(password)
         except:
-            raise ValueError("Yanlış şifre veya şifreli değil")
+            raise ValueError("Wrong password or not encrypted")
     else:
-        raise ValueError("Bu PDF şifreli değil")
+        raise ValueError("This PDF is not encrypted")
     
     writer = PdfWriter()
     for page in reader.pages:
@@ -675,7 +675,7 @@ def merge_pdf():
                 return redirect(request.url)
         
         if len(pdf_files) < 2:
-            flash('En az 2 PDF dosyası seçmelisiniz', 'error')
+            flash('You must select at least 2 PDF files', 'error')
             cleanup_files(*pdf_files)
             return redirect(request.url)
         
@@ -910,7 +910,7 @@ def pdf_to_jpg_route():
             if dpi < 72 or dpi > 300:
                 raise ValueError
         except:
-            flash('DPI 72-300 arasında olmalı', 'error')
+            flash('DPI must be between 72-300', 'error')
             return redirect(request.url)
         
         filename = secure_filename(file.filename)
@@ -967,7 +967,7 @@ def jpg_to_pdf_route():
                 return redirect(request.url)
         
         if not img_files:
-            flash('En az 1 resim dosyası seçmelisiniz', 'error')
+            flash('You must select at least 1 image file', 'error')
             return redirect(request.url)
         
         uid = uuid.uuid4().hex
@@ -1051,7 +1051,7 @@ def heic_to_jpg_route():
             return redirect(request.url)
         ext = get_ext(file.filename)
         if not allowed_file(file.filename) or ext not in ('heic', 'heif'):
-            flash('Sadece HEIC/HEIF dosyaları yükleyebilirsiniz', 'error')
+            flash('You can only upload HEIC/HEIF files', 'error')
             return redirect(request.url)
         
         try:
@@ -1109,7 +1109,7 @@ def image_resize_route():
                 return redirect(request.url)
         
         if not img_files:
-            flash('En az 1 resim dosyası seçmelisiniz', 'error')
+            flash('You must select at least 1 image file', 'error')
             return redirect(request.url)
         
         # Get resize parameters
@@ -1130,7 +1130,7 @@ def image_resize_route():
                 cleanup_files(*img_files)
                 return redirect(request.url)
         except:
-            flash('Geçersiz boyut değerleri', 'error')
+            flash('Invalid dimension values', 'error')
             cleanup_files(*img_files)
             return redirect(request.url)
         
