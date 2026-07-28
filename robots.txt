@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-Disallow: /uploads/
-Disallow: /outputs/
+Sitemap: https://padel-file-converter.onrender.com/sitemap.xml
