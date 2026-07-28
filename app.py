@@ -344,14 +344,14 @@ def index():
 def pdf_to_word():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyaları yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF files', 'error')
             return redirect(request.url)
         filename = secure_filename(file.filename)
         uid = uuid.uuid4().hex
@@ -368,7 +368,7 @@ def pdf_to_word():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Dönüştürme hatası: {str(e)}', 'error')
+            flash(f'Conversion error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('pdf_to_word.html')
@@ -377,15 +377,15 @@ def pdf_to_word():
 def word_to_pdf():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         ext = get_ext(file.filename)
         if not allowed_file(file.filename) or ext not in ('docx', 'doc'):
-            flash('Sadece DOC/DOCX dosyaları yükleyebilirsiniz', 'error')
+            flash('You can only upload DOC/DOCX files', 'error')
             return redirect(request.url)
         filename = secure_filename(file.filename)
         uid = uuid.uuid4().hex
@@ -402,7 +402,7 @@ def word_to_pdf():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Dönüştürme hatası: {str(e)}', 'error')
+            flash(f'Conversion error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('word_to_pdf.html')
@@ -412,19 +412,19 @@ def word_to_pdf():
 def image_converter():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         ext = get_ext(file.filename)
         if not allowed_file(file.filename) or ext not in ('png','jpg','jpeg','gif','bmp','tiff','webp'):
-            flash('Sadece resim dosyaları yükleyebilirsiniz', 'error')
+            flash('You can only upload image files', 'error')
             return redirect(request.url)
         target_format = request.form.get('target_format', '').lower()
         if target_format not in ('png','jpg','jpeg','gif','bmp','tiff','webp'):
-            flash('Geçerli hedef format seçin', 'error')
+            flash('Select a valid target format', 'error')
             return redirect(request.url)
         filename = secure_filename(file.filename)
         uid = uuid.uuid4().hex
@@ -441,7 +441,7 @@ def image_converter():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Dönüştürme hatası: {str(e)}', 'error')
+            flash(f'Conversion error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('image_converter.html')
@@ -451,22 +451,22 @@ def image_converter():
 def image_compressor():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         ext = get_ext(file.filename)
         if not allowed_file(file.filename) or ext not in ('png','jpg','jpeg','gif','bmp','tiff','webp'):
-            flash('Sadece resim dosyaları yükleyebilirsiniz', 'error')
+            flash('You can only upload image files', 'error')
             return redirect(request.url)
         try:
             quality = int(request.form.get('quality', 85))
             if quality < 1 or quality > 100:
                 raise ValueError
         except:
-            flash('Kalite değeri 1-100 arasında olmalı', 'error')
+            flash('Quality value must be between 1-100', 'error')
             return redirect(request.url)
         filename = secure_filename(file.filename)
         uid = uuid.uuid4().hex
@@ -483,7 +483,7 @@ def image_compressor():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Sıkıştırma hatası: {str(e)}', 'error')
+            flash(f'Compression error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('image_compressor.html')
@@ -654,11 +654,11 @@ def batch_resize_images(input_paths, output_dir, width=None, height=None, percen
 def merge_pdf():
     if request.method == 'POST':
         if 'files' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         files = request.files.getlist('files')
         if not files or all(f.filename == '' for f in files):
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         
         pdf_files = []
@@ -670,7 +670,7 @@ def merge_pdf():
                 file.save(input_path)
                 pdf_files.append(input_path)
             else:
-                flash('Sadece PDF dosyaları yükleyebilirsiniz', 'error')
+                flash('You can only upload PDF files', 'error')
                 cleanup_files(*pdf_files)
                 return redirect(request.url)
         
@@ -702,14 +702,14 @@ def merge_pdf():
 def split_pdf_route():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyası yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF file', 'error')
             return redirect(request.url)
         
         filename = secure_filename(file.filename)
@@ -764,14 +764,14 @@ def split_pdf_route():
 def compress_pdf_route():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyası yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF file', 'error')
             return redirect(request.url)
         
         try:
@@ -779,7 +779,7 @@ def compress_pdf_route():
             if quality < 1 or quality > 100:
                 raise ValueError
         except:
-            flash('Kalite değeri 1-100 arasında olmalı', 'error')
+            flash('Quality value must be between 1-100', 'error')
             return redirect(request.url)
         
         filename = secure_filename(file.filename)
@@ -798,7 +798,7 @@ def compress_pdf_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Sıkıştırma hatası: {str(e)}', 'error')
+            flash(f'Compression error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('compress_pdf.html')
@@ -808,19 +808,19 @@ def compress_pdf_route():
 def pdf_password_remove():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyası yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF file', 'error')
             return redirect(request.url)
         
         password = request.form.get('password', '').strip()
         if not password:
-            flash('Şifre girilmeli', 'error')
+            flash('Password must be entered', 'error')
             return redirect(request.url)
         
         filename = secure_filename(file.filename)
@@ -844,7 +844,7 @@ def pdf_password_remove():
             return redirect(request.url)
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Şifre kaldırma hatası: {str(e)}', 'error')
+            flash(f'Password removal error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('pdf_password_remove.html')
@@ -854,19 +854,19 @@ def pdf_password_remove():
 def pdf_password_protect():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyası yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF file', 'error')
             return redirect(request.url)
         
         password = request.form.get('password', '').strip()
         if not password:
-            flash('Şifre girilmeli', 'error')
+            flash('Password must be entered', 'error')
             return redirect(request.url)
         
         filename = secure_filename(file.filename)
@@ -895,14 +895,14 @@ def pdf_password_protect():
 def pdf_to_jpg_route():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyası yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF file', 'error')
             return redirect(request.url)
         
         try:
@@ -946,11 +946,11 @@ def pdf_to_jpg_route():
 def jpg_to_pdf_route():
     if request.method == 'POST':
         if 'files' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         files = request.files.getlist('files')
         if not files or all(f.filename == '' for f in files):
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         
         img_files = []
@@ -962,7 +962,7 @@ def jpg_to_pdf_route():
                 file.save(input_path)
                 img_files.append(input_path)
             else:
-                flash('Sadece resim dosyaları yükleyebilirsiniz', 'error')
+                flash('You can only upload image files', 'error')
                 cleanup_files(*img_files)
                 return redirect(request.url)
         
@@ -993,14 +993,14 @@ def jpg_to_pdf_route():
 def rotate_pdf_route():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         if not allowed_file(file.filename) or get_ext(file.filename) != 'pdf':
-            flash('Sadece PDF dosyası yükleyebilirsiniz', 'error')
+            flash('You can only upload PDF file', 'error')
             return redirect(request.url)
         
         # Parse rotations
@@ -1043,11 +1043,11 @@ def rotate_pdf_route():
 def heic_to_jpg_route():
     if request.method == 'POST':
         if 'file' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         file = request.files['file']
         if file.filename == '':
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         ext = get_ext(file.filename)
         if not allowed_file(file.filename) or ext not in ('heic', 'heif'):
@@ -1059,7 +1059,7 @@ def heic_to_jpg_route():
             if quality < 1 or quality > 100:
                 raise ValueError
         except:
-            flash('Kalite değeri 1-100 arasında olmalı', 'error')
+            flash('Quality value must be between 1-100', 'error')
             return redirect(request.url)
         
         filename = secure_filename(file.filename)
@@ -1078,7 +1078,7 @@ def heic_to_jpg_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Dönüştürme hatası: {str(e)}', 'error')
+            flash(f'Conversion error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('heic_to_jpg.html')
@@ -1088,11 +1088,11 @@ def heic_to_jpg_route():
 def image_resize_route():
     if request.method == 'POST':
         if 'files' not in request.files:
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         files = request.files.getlist('files')
         if not files or all(f.filename == '' for f in files):
-            flash('Dosya seçilmedi', 'error')
+            flash('No file selected', 'error')
             return redirect(request.url)
         
         img_files = []
@@ -1104,7 +1104,7 @@ def image_resize_route():
                 file.save(input_path)
                 img_files.append(input_path)
             else:
-                flash('Sadece resim dosyaları yükleyebilirsiniz', 'error')
+                flash('You can only upload image files', 'error')
                 cleanup_files(*img_files)
                 return redirect(request.url)
         

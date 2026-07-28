@@ -238,7 +238,7 @@
             <input type="file" id="fileInput" name="file" accept="{{ accept_ext }}" required>
         </div>
 
-        {{ extra_fields | safe }}
+        {% block extra_form_fields %}{% endblock %}
 
         <button type="submit" class="submit-btn">{{ button_text }}</button>
     </form>
