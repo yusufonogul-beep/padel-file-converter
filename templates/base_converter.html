@@ -226,7 +226,7 @@
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>{{ h1 }}</h1>
+        <h1>{{ title }}</h1>
         <p>{{ description }}</p>
     </div>
 
@@ -238,7 +238,7 @@
             <input type="file" id="fileInput" name="file" accept="{{ accept_ext }}" required>
         </div>
 
-        {{ extra_fields }}
+        {{ extra_fields | safe }}
 
         <button type="submit" class="submit-btn">{{ button_text }}</button>
     </form>
