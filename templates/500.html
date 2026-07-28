@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Server Error - Snapverto{% endblock %}
+{% block meta_description %}Something went wrong on our end. Please try again later.{% endblock %}
+{% block og_title %}Server Error - Snapverto{% endblock %}
+{% block og_description %}Something went wrong on our end. Please try again later.{% endblock %}
+{% block og_image %}/static/og-image.png{% endblock %}
+{% block content %}
+
+<style>
+    .error-container {
+        text-align: center;
+        padding: 80px 20px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    .error-container h1 {
+        font-size: 48px;
+        margin-bottom: 16px;
+        color: #111827;
+    }
+    .error-container p {
+        font-size: 18px;
+        color: #6B7280;
+        margin-bottom: 32px;
+    }
+    .btn-home {
+        display: inline-block;
+        background: #3B82F6;
+        color: #FFFFFF;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.2s;
+    }
+    .btn-home:hover {
+        background: #1E40AF;
+    }
+</style>
+
+<div class="error-container">
+    <h1>500</h1>
+    <p>Something went wrong on our end. Please try again later.</p>
+    <a href="/" class="btn-home">Return to Homepage</a>
+</div>
+
+{% endblock %}

@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Snapverto - Free Online File Converter{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}Free online file converter for PDF, images, documents. No registration required.{% endblock %}">
+    <!-- Open Graph meta tags -->
+    <meta property="og:title" content="{% block og_title %}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{{ request.url }}{% endblock %}">
+    <meta property="og:type" content="website">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="{% block canonical %}{{ request.url }}{% endblock %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -251,6 +257,42 @@
                 font-size: 20px;
             }
         }
+
+        /* Cookie Consent Banner */
+        #cookie-consent {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #111827;
+            color: #F3F4F6;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        #cookie-consent.show {
+            transform: translateY(0);
+        }
+        #cookie-consent p {
+            margin: 0;
+            font-size: 14px;
+        }
+        #cookie-consent button {
+            background: #3B82F6;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        #cookie-consent button:hover {
+            background: #2563EB;
+        }
     </style>
 </head>
 <body style="display: flex; flex-direction: column; min-height: 100vh;">
@@ -329,6 +371,7 @@
                             <path d="M40 45 C40 39.477 44.477 35 50 35 L80 35 C85.523 35 90 39.477 90 45 L90 75 C90 80.523 85.523 85 80 85 L50 85 C44.477 85 40 80.523 40 75 Z" fill="url(#targetGrad)" filter="url(#dropShadow)"/>
                             <path d="M 58 60 L 65 53 L 72 60" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                             <path d="M 65 53 L 65 67" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        fill="none"/>
                         </svg>
                     </div>
                     <h4>About</h4>
@@ -360,6 +403,39 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-consent">
+        <p>We use cookies to ensure you get the best experience on our website. By continuing to use this site, you consent to our use of cookies.</p>
+        <button id="accept-cookies">Accept</button>
+    </div>
+
+    <!-- Google Analytics 4 -->
+    <!-- Replace G-XXXXXXXXXX with real GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const cookieConsent = document.getElementById('cookie-consent');
+        const acceptButton = document.getElementById('accept-cookies');
+        
+        // Check if user has already accepted cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+          cookieConsent.classList.add('show');
+        }
+        
+        acceptButton.addEventListener('click', function() {
+          localStorage.setItem('cookiesAccepted', 'true');
+          cookieConsent.classList.remove('show');
+        });
+      });
+    </script>
 
     {% block schema_json_ld %}{% endblock %}
 
