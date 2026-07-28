@@ -13,6 +13,14 @@
     <meta property="og:type" content="website">
     <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="{% block canonical %}{{ request.url }}{% endblock %}">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
