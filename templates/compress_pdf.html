@@ -15,8 +15,8 @@
     input[type="file"] { display: none; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #111827; }
-    .form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .form-group input { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
+    .form-group input:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
     .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
     .submit-btn:hover { background: #1E40AF; }
     .form-ad { margin: 40px 0; text-align: center; }
@@ -25,44 +25,35 @@
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>PDF Sıkıştır</h1>
-        <p>PDF dosya boyutunu kaliteden taviz vermeden küçültün.</p>
+        <h1>Compress PDF</h1>
+        <p>Reduce file size without losing quality.</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
             <div class="upload-icon">📉</div>
-            <div class="upload-text">Dosya Seç veya Sürükle</div>
-            <div class="upload-hint">PDF dosyası yükleyin</div>
+            <div class="upload-text">Select PDF File or Drag & Drop</div>
+            <div class="upload-hint">Upload the PDF to compress</div>
             <input type="file" id="fileInput" name="file" accept=".pdf" required>
         </div>
 
         <div class="form-group">
-            <label>Kalite Seviyesi (1-100, varsayılan 75)</label>
+            <label>Quality Level (1-100, default 75)</label>
             <input type="number" name="quality" min="1" max="100" value="75">
         </div>
 
-        <button type="submit" class="submit-btn">Sıkıştır</button>
+        <button type="submit" class="submit-btn">Compress & Download</button>
     </form>
 
     <div class="form-ad">
-        <div class="ad-placeholder">📢 Reklam Alanı (300x600)</div>
+        <div class="ad-placeholder">📢 Ad Space (300x600)</div>
     </div>
 </div>
 
 <script>
-    function handleDragOver(e) {
-        e.preventDefault();
-        document.querySelector('.upload-section').classList.add('dragover');
-    }
-    function handleDragLeave(e) {
-        document.querySelector('.upload-section').classList.remove('dragover');
-    }
-    function handleDrop(e) {
-        e.preventDefault();
-        document.querySelector('.upload-section').classList.remove('dragover');
-        document.getElementById('fileInput').files = e.dataTransfer.files;
-    }
+    function handleDragOver(e) { e.preventDefault(); document.querySelector('.upload-section').classList.add('dragover'); }
+    function handleDragLeave(e) { document.querySelector('.upload-section').classList.remove('dragover'); }
+    function handleDrop(e) { e.preventDefault(); document.querySelector('.upload-section').classList.remove('dragover'); document.getElementById('fileInput').files = e.dataTransfer.files; }
 </script>
 
 {% endblock %}

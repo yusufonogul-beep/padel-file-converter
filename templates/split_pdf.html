@@ -2,150 +2,58 @@
 {% block content %}
 
 <style>
-    .converter-layout {
-        max-width: 600px;
-        margin: 0 auto;
-    }
-    .converter-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    .converter-header h1 {
-        margin-bottom: 8px;
-    }
-    .converter-header p {
-        font-size: 14px;
-        color: #6B7280;
-    }
-    .upload-section {
-        background: #FFFFFF;
-        border: 2px dashed #D1D5DB;
-        border-radius: 8px;
-        padding: 40px;
-        text-align: center;
-        margin-bottom: 24px;
-        cursor: pointer;
-        transition: all 200ms;
-    }
-    .upload-section:hover {
-        border-color: #3B82F6;
-        background: #F0F9FF;
-    }
-    .upload-icon {
-        font-size: 48px;
-        margin-bottom: 12px;
-    }
-    .upload-text {
-        font-size: 16px;
-        font-weight: 500;
-        color: #111827;
-        margin-bottom: 4px;
-    }
-    .upload-hint {
-        font-size: 14px;
-        color: #6B7280;
-    }
-    input[type="file"] {
-        display: none;
-    }
-    .form-group {
-        margin-bottom: 16px;
-    }
-    .form-group label {
-        display: block;
-        font-size: 14px;
-        font-weight: 500;
-        margin-bottom: 8px;
-        color: #111827;
-    }
-    .form-group input {
-        width: 100%;
-        padding: 8px 12px;
-        border: 1px solid #D1D5DB;
-        border-radius: 4px;
-        font-size: 14px;
-    }
-    .form-group input:focus {
-        outline: none;
-        border-color: #3B82F6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-    }
-    .submit-btn {
-        width: 100%;
-        padding: 12px 24px;
-        background: #3B82F6;
-        color: #FFFFFF;
-        border: none;
-        border-radius: 6px;
-        font-size: 16px;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 200ms;
-        margin-bottom: 24px;
-    }
-    .submit-btn:hover {
-        background: #1E40AF;
-    }
-    .form-ad {
-        margin: 40px 0;
-        text-align: center;
-    }
-    .ad-placeholder {
-        background: #F3F4F6;
-        border: 2px dashed #D1D5DB;
-        border-radius: 8px;
-        padding: 40px;
-        color: #9CA3AF;
-        font-size: 14px;
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+    .converter-layout { max-width: 600px; margin: 0 auto; }
+    .converter-header { text-align: center; margin-bottom: 40px; }
+    .converter-header h1 { margin-bottom: 8px; }
+    .converter-header p { font-size: 14px; color: #6B7280; }
+    .upload-section { background: #FFFFFF; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: all 200ms; }
+    .upload-section:hover { border-color: #3B82F6; background: #F0F9FF; }
+    .upload-section.dragover { border-color: #3B82F6; background: #F0F9FF; }
+    .upload-icon { font-size: 48px; margin-bottom: 12px; }
+    .upload-text { font-size: 16px; font-weight: 500; color: #111827; margin-bottom: 4px; }
+    .upload-hint { font-size: 14px; color: #6B7280; }
+    input[type="file"] { display: none; }
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #111827; }
+    .form-group input { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
+    .form-group input:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
+    .submit-btn:hover { background: #1E40AF; }
+    .form-ad { margin: 40px 0; text-align: center; }
+    .ad-placeholder { background: #F3F4F6; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; color: #9CA3AF; font-size: 14px; height: 300px; display: flex; align-items: center; justify-content: center; }
 </style>
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>PDF Böl</h1>
-        <p>PDF dosyasının belirli sayfalarını ayrıştırın. Sayfa numarası veya aralığı girin.</p>
+        <h1>Split PDF</h1>
+        <p>Extract specific pages and create separate documents.</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
             <div class="upload-icon">✂️</div>
-            <div class="upload-text">PDF Dosyası Seç veya Sürükle</div>
-            <div class="upload-hint">Bölmek istediğiniz PDF'yi yükleyin</div>
+            <div class="upload-text">Select PDF File or Drag & Drop</div>
+            <div class="upload-hint">Upload the PDF to split</div>
             <input type="file" id="fileInput" name="file" accept=".pdf" required>
         </div>
 
         <div class="form-group">
-            <label>Sayfa Aralığı (ör. "1-3" veya "5")</label>
+            <label>Page Range (e.g. "1-3" or "5")</label>
             <input type="text" name="ranges" placeholder="1-3" required>
         </div>
 
-        <button type="submit" class="submit-btn">Böl ve İndir</button>
+        <button type="submit" class="submit-btn">Split & Download</button>
     </form>
 
     <div class="form-ad">
-        <div class="ad-placeholder">
-            📢 Reklam Alanı (300x600)
-        </div>
+        <div class="ad-placeholder">📢 Ad Space (300x600)</div>
     </div>
 </div>
 
 <script>
-    function handleDragOver(e) {
-        e.preventDefault();
-        document.querySelector('.upload-section').classList.add('dragover');
-    }
-    function handleDragLeave(e) {
-        document.querySelector('.upload-section').classList.remove('dragover');
-    }
-    function handleDrop(e) {
-        e.preventDefault();
-        document.querySelector('.upload-section').classList.remove('dragover');
-        document.getElementById('fileInput').files = e.dataTransfer.files;
-    }
+    function handleDragOver(e) { e.preventDefault(); document.querySelector('.upload-section').classList.add('dragover'); }
+    function handleDragLeave(e) { document.querySelector('.upload-section').classList.remove('dragover'); }
+    function handleDrop(e) { e.preventDefault(); document.querySelector('.upload-section').classList.remove('dragover'); document.getElementById('fileInput').files = e.dataTransfer.files; }
 </script>
 
 {% endblock %}

@@ -15,8 +15,8 @@
     input[type="file"] { display: none; }
     .form-group { margin-bottom: 16px; }
     .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #111827; }
-    .form-group input, .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
-    .form-group input:focus, .form-group select:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+    .form-group select { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
+    .form-group select:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
     .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
     .submit-btn:hover { background: #1E40AF; }
     .form-ad { margin: 40px 0; text-align: center; }
@@ -25,20 +25,20 @@
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>PDF Döndür</h1>
-        <p>PDF sayfalarını 90, 180 veya 270 derece döndürün.</p>
+        <h1>Rotate PDF</h1>
+        <p>Rotate pages 90, 180, or 270 degrees. Fast and easy.</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
             <div class="upload-icon">🔄</div>
-            <div class="upload-text">PDF Dosyası Seç veya Sürükle</div>
-            <div class="upload-hint">Döndürülecek PDF'yi yükleyin</div>
+            <div class="upload-text">Select PDF File or Drag & Drop</div>
+            <div class="upload-hint">Upload the PDF to rotate</div>
             <input type="file" id="fileInput" name="file" accept=".pdf" required>
         </div>
 
         <div class="form-group">
-            <label>Döndürme Derecesi</label>
+            <label>Rotation Degree</label>
             <select name="rotation" required>
                 <option value="90">90°</option>
                 <option value="180">180°</option>
@@ -46,11 +46,11 @@
             </select>
         </div>
 
-        <button type="submit" class="submit-btn">Döndür</button>
+        <button type="submit" class="submit-btn">Rotate & Download</button>
     </form>
 
     <div class="form-ad">
-        <div class="ad-placeholder">📢 Reklam Alanı (300x600)</div>
+        <div class="ad-placeholder">📢 Ad Space (300x600)</div>
     </div>
 </div>
 
