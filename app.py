@@ -4,7 +4,7 @@ import traceback
 import subprocess
 import io
 from datetime import datetime
-from flask import Flask, request, render_template, send_file, jsonify, redirect, url_for, flash
+from flask import Flask, request, render_template, send_file, jsonify, redirect, url_for, flash, send_from_directory
 from werkzeug.utils import secure_filename
 from pdf2docx import Converter
 from PIL import Image
@@ -692,7 +692,7 @@ def merge_pdf():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Birleştirme hatası: {str(e)}', 'error')
+            flash(f'Merge error: {str(e)}', 'error')
             cleanup_files(*pdf_files, output_path)
             return redirect(request.url)
     return render_template('merge_pdf.html')
@@ -732,7 +732,7 @@ def split_pdf_route():
                         page = int(part)
                         ranges.append((page-1, page))
             except:
-                flash('Sayfa aralıkları geçersiz (örnek: 1-3,5,7-9)', 'error')
+                flash('Page ranges invalid (example: 1-3,5,7-9)', 'error')
                 cleanup_files(input_path)
                 return redirect(request.url)
         
@@ -754,7 +754,7 @@ def split_pdf_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Bölme hatası: {str(e)}', 'error')
+            flash(f'Split error: {str(e)}', 'error')
             cleanup_files(input_path)
             return redirect(request.url)
     return render_template('split_pdf.html')
@@ -885,7 +885,7 @@ def pdf_password_protect():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Şifre ekleme hatası: {str(e)}', 'error')
+            flash(f'Password protection error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('pdf_password_protect.html')
@@ -936,7 +936,7 @@ def pdf_to_jpg_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'PDF to JPG hatası: {str(e)}', 'error')
+            flash(f'PDF to JPG error: {str(e)}', 'error')
             cleanup_files(input_path)
             return redirect(request.url)
     return render_template('pdf_to_jpg.html')
@@ -983,7 +983,7 @@ def jpg_to_pdf_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'JPG to PDF hatası: {str(e)}', 'error')
+            flash(f'JPG to PDF error: {str(e)}', 'error')
             cleanup_files(*img_files, output_path)
             return redirect(request.url)
     return render_template('jpg_to_pdf.html')
@@ -1031,7 +1031,7 @@ def rotate_pdf_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Döndürme hatası: {str(e)}', 'error')
+            flash(f'Rotation error: {str(e)}', 'error')
             cleanup_files(input_path, output_path)
             return redirect(request.url)
     return render_template('rotate_pdf.html')
@@ -1126,7 +1126,7 @@ def image_resize_route():
                 percentage = int(percentage)
             
             if not any([width, height, percentage]):
-                flash('En az bir boyut (genişlik, yükseklik veya yüzde) girilmeli', 'error')
+                flash('At least one dimension (width, height or percentage) must be provided', 'error')
                 cleanup_files(*img_files)
                 return redirect(request.url)
         except:
@@ -1152,7 +1152,7 @@ def image_resize_route():
             return response
         except Exception as e:
             print(traceback.format_exc())
-            flash(f'Yeniden boyutlandırma hatası: {str(e)}', 'error')
+            flash(f'Resize error: {str(e)}', 'error')
             cleanup_files(*img_files)
             return render_template('image_resize.html')
     
@@ -1165,6 +1165,14 @@ def image_resize_route():
 def privacy():
     return render_template('privacy.html')
 
+
+@app.route('/robots.txt')
+def robots():
+    return send_from_directory(app.root_path, 'robots.txt')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(app.root_path, 'sitemap.xml')
 
 @app.route('/terms')
 def terms():
@@ -1181,6 +1189,16 @@ def about():
 @app.route('/contact')
 def contact():
     return render_template('contact.html')
+
+
+
+@app.route("/robots.txt")
+def robots():
+    return send_from_directory(app.root_path, "robots.txt")
+
+@app.route("/sitemap.xml")
+def sitemap():
+    return send_from_directory(app.root_path, "sitemap.xml")
 
 
 # ==================== ERROR HANDLERS ====================
