@@ -447,5 +447,18 @@
 
     {% block schema_json_ld %}{% endblock %}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cookieBanner = document.getElementById('cookie-consent');
+            if (!localStorage.getItem('cookieConsent')) {
+                cookieBanner.classList.add('show');
+            }
+            document.querySelector('#cookie-consent button').addEventListener('click', function() {
+                localStorage.setItem('cookieConsent', 'true');
+                cookieBanner.classList.remove('show');
+            });
+        });
+    </script>
+
 </body>
 </html>
