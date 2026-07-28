@@ -9,7 +9,7 @@
 {% set accept_ext = ".png,.jpg,.jpeg,.gif,.bmp,.webp" %}
 {% set button_text = "Resize & Download" %}
 {% set step2_desc = "Set dimensions or scale percentage" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
             <label>Width (px, optional)</label>
             <input type="number" name="width" min="1">
@@ -22,7 +22,7 @@
             <label>Scale (%, optional)</label>
             <input type="number" name="percentage" min="1" max="500">
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/image-converter', 'icon': '🎨', 'name': 'Image Converter', 'desc': 'Convert between image formats'},
 {'url': '/image-compressor', 'icon': '📦', 'name': 'Compress Images', 'desc': 'Reduce image file size'},

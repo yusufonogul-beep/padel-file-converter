@@ -1,25 +1,25 @@
 {% extends "base_converter.html" %}
 {% set title = "Compress Images - Snapverto" %}
-{% set meta_desc = "Compress images without losing quality. Free online image compressor for web." %}
+{% set meta_desc = "Reduce image file size while maintaining quality. Free online image compressor." %}
 {% set h1 = "Compress Images" %}
-{% set description = "Reduce image file size while preserving visual quality." %}
+{% set description = "Compress multiple images at once with adjustable quality." %}
 {% set upload_icon = "📦" %}
 {% set upload_text = "Select Image Files or Drag & Drop" %}
 {% set upload_hint = "PNG, JPG, GIF, WebP, BMP supported" %}
 {% set accept_ext = ".png,.jpg,.jpeg,.gif,.bmp,.webp" %}
 {% set button_text = "Compress & Download" %}
 {% set step2_desc = "Set compression quality" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
-            <label>Compression Level (1-100, default 80)</label>
-            <input type="number" name="quality" min="1" max="100" value="80">
+            <label>Quality (1-100)</label>
+            <input type="number" name="quality" min="1" max="100" value="85">
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/image-resize', 'icon': '📏', 'name': 'Resize Images', 'desc': 'Change image dimensions'},
 {'url': '/image-converter', 'icon': '🎨', 'name': 'Image Converter', 'desc': 'Convert between image formats'},
 {'url': '/heic-to-jpg', 'icon': '📱→🖼️', 'name': 'HEIC to JPG', 'desc': 'Convert iPhone photos'}
 ] %}
 {% set schema_name = "Compress Images - Snapverto" %}
-{% set schema_desc = "Compress images without losing quality. Free online image compressor for web." %}
+{% set schema_desc = "Reduce image file size while maintaining quality. Free online image compressor." %}
 {% block content %}{{ super() }}{% endblock %}

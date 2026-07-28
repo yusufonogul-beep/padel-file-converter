@@ -9,16 +9,15 @@
 {% set accept_ext = ".pdf" %}
 {% set button_text = "Convert & Download" %}
 {% set step2_desc = "Choose image resolution (DPI)" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
             <label>Resolution (DPI, default 150)</label>
             <input type="number" name="dpi" min="72" max="300" value="150">
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/jpg-to-pdf', 'icon': '🖼️→📄', 'name': 'JPG to PDF', 'desc': 'Convert images to PDF'},
 {'url': '/pdf-to-word', 'icon': '📄→📝', 'name': 'PDF to Word', 'desc': 'Convert PDF to editable DOC'},
-{'url': '/compress-pdf', 'icon': '📉', 'name': 'Compress PDF', 'desc': 'Reduce PDF file size'}
 ] %}
 {% set schema_name = "PDF to JPG - Snapverto" %}
 {% set schema_desc = "Convert PDF pages to JPG images. Free online PDF to image converter." %}

@@ -9,16 +9,16 @@
 {% set accept_ext = ".pdf" %}
 {% set button_text = "Compress & Download" %}
 {% set step2_desc = "Choose compression level" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
             <label>Compression Level (1-100, default 50)</label>
             <input type="number" name="quality" min="1" max="100" value="50">
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/merge-pdf', 'icon': '📋', 'name': 'Merge PDF', 'desc': 'Combine PDF files'},
 {'url': '/split-pdf', 'icon': '✂️', 'name': 'Split PDF', 'desc': 'Extract pages from PDF'},
-{'url': '/pdf-to-word', 'icon': '📄→📝', 'name': 'PDF to Word', 'desc': 'Convert PDF to editable DOC'}
+{'url': '/rotate-pdf', 'icon': '🔄', 'name': 'Rotate PDF', 'desc': 'Rotate PDF pages'}
 ] %}
 {% set schema_name = "Compress PDF - Snapverto" %}
 {% set schema_desc = "Reduce PDF file size without losing quality. Free online PDF compressor." %}

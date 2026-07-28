@@ -9,12 +9,12 @@
 {% set accept_ext = ".heic,.heif" %}
 {% set button_text = "Convert & Download" %}
 {% set step2_desc = "Adjust image quality" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
             <label>Quality (1-100, default 85)</label>
             <input type="number" name="quality" min="1" max="100" value="85">
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/image-converter', 'icon': '🎨', 'name': 'Image Converter', 'desc': 'Convert between image formats'},
 {'url': '/image-compressor', 'icon': '📦', 'name': 'Compress Images', 'desc': 'Reduce image file size'},

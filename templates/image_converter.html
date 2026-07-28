@@ -9,7 +9,7 @@
 {% set accept_ext = ".png,.jpg,.jpeg,.gif,.bmp,.webp" %}
 {% set button_text = "Convert & Download" %}
 {% set step2_desc = "Choose output format" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
             <label>Output Format</label>
             <select name="format" required>
@@ -19,7 +19,7 @@
                 <option value="gif">GIF</option>
             </select>
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/image-resize', 'icon': '📏', 'name': 'Resize Images', 'desc': 'Change image dimensions'},
 {'url': '/image-compressor', 'icon': '📦', 'name': 'Compress Images', 'desc': 'Reduce image file size'},

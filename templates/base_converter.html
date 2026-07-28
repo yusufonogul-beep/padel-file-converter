@@ -271,7 +271,13 @@
 <div class="related-tools">
     <h2>Related Tools</h2>
     <div class="related-tools-grid">
-        {related_tools_content}
+        {% for tool in related_tools %}
+            <div class="related-tool">
+                <div class="related-tool-icon">{{ tool.icon }}</div>
+                <h3>{{ tool.name }}</h3>
+                <p>{{ tool.desc }}</p>
+            </div>
+        {% endfor %}
     </div>
 </div>
 

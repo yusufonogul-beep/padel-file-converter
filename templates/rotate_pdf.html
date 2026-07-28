@@ -9,7 +9,7 @@
 {% set accept_ext = ".pdf" %}
 {% set button_text = "Rotate & Download" %}
 {% set step2_desc = "Select rotation angle" %}
-{% set extra_fields = """
+{% block extra_form_fields %}
 <div class="form-group">
             <label>Rotation Degree</label>
             <select name="rotation" required>
@@ -18,7 +18,7 @@
                 <option value="270">270°</option>
             </select>
         </div>
-""" %}
+{% endblock %}
 {% set related_tools = [
 {'url': '/merge-pdf', 'icon': '📋', 'name': 'Merge PDF', 'desc': 'Combine PDF files'},
 {'url': '/split-pdf', 'icon': '✂️', 'name': 'Split PDF', 'desc': 'Extract pages from PDF'},
