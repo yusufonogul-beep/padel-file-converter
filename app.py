@@ -187,7 +187,7 @@ def remove_pdf_password(input_path, output_path, password):
         try:
             reader.decrypt(password)
         except Exception as e:
-            raise ValueError(f"Yanlış şifre: {str(e)}")
+            raise ValueError(f"Wrong password: {str(e)}")
     writer = PdfWriter()
     for page in reader.pages:
         writer.add_page(page)
@@ -300,7 +300,7 @@ def batch_resize_images(input_paths, output_dir, width=None, height=None, percen
             new_height = height
             new_width = int(orig_width * height / orig_height)
         else:
-            raise ValueError("En az bir boyut (width, height veya percentage) belirtilmeli")
+            raise ValueError("At least one dimension (width, height or percentage) must be specified")
         
         img = img.resize((new_width, new_height), Image.Resampling.LANCZOS)
         
