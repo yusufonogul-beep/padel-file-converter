@@ -1,59 +1,329 @@
 {% extends "base.html" %}
+{% block title %}Split PDF Online - Snapverto{% endblock %}
+{% block meta_description %}Split PDF files into separate pages or ranges. Free online PDF splitter, no registration required.{% endblock %}
 {% block content %}
 
 <style>
-    .converter-layout { max-width: 600px; margin: 0 auto; }
-    .converter-header { text-align: center; margin-bottom: 40px; }
-    .converter-header h1 { margin-bottom: 8px; }
-    .converter-header p { font-size: 14px; color: #6B7280; }
-    .upload-section { background: #FFFFFF; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: all 200ms; }
-    .upload-section:hover { border-color: #3B82F6; background: #F0F9FF; }
-    .upload-section.dragover { border-color: #3B82F6; background: #F0F9FF; }
-    .upload-icon { font-size: 48px; margin-bottom: 12px; }
-    .upload-text { font-size: 16px; font-weight: 500; color: #111827; margin-bottom: 4px; }
-    .upload-hint { font-size: 14px; color: #6B7280; }
-    input[type="file"] { display: none; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #111827; }
-    .form-group input { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
-    .form-group input:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
-    .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
-    .submit-btn:hover { background: #1E40AF; }
-    .form-ad { margin: 40px 0; text-align: center; }
-    .ad-placeholder { background: #F3F4F6; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; color: #9CA3AF; font-size: 14px; height: 300px; display: flex; align-items: center; justify-content: center; }
+    .converter-layout {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .converter-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .converter-header h1 {
+        margin-bottom: 8px;
+    }
+
+    .converter-header p {
+        font-size: 14px;
+        color: #6B7280;
+    }
+
+    .upload-section {
+        background: #FFFFFF;
+        border: 2px dashed #D1D5DB;
+        border-radius: 8px;
+        padding: 40px;
+        text-align: center;
+        margin-bottom: 24px;
+        cursor: pointer;
+        transition: all 200ms;
+    }
+
+    .upload-section:hover {
+        border-color: #3B82F6;
+        background: #F0F9FF;
+    }
+
+    .upload-section.dragover {
+        border-color: #3B82F6;
+        background: #F0F9FF;
+    }
+
+    .upload-icon {
+        font-size: 48px;
+        margin-bottom: 12px;
+    }
+
+    .upload-text {
+        font-size: 16px;
+        font-weight: 500;
+        color: #111827;
+        margin-bottom: 4px;
+    }
+
+    .upload-hint {
+        font-size: 14px;
+        color: #6B7280;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #111827;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #D1D5DB;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .submit-btn {
+        width: 100%;
+        padding: 12px 24px;
+        background: #3B82F6;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 200ms;
+        margin-bottom: 24px;
+    }
+
+    .submit-btn:hover {
+        background: #1E40AF;
+    }
+
+    .form-ad {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    .ad-placeholder {
+        background: #F3F4F6;
+        border: 2px dashed #D1D5DB;
+        border-radius: 8px;
+        padding: 40px;
+        color: #9CA3AF;
+        font-size: 14px;
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .how-it-works {
+        background: #F9FAFB;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        padding: 24px;
+        margin: 32px 0;
+    }
+
+    .how-it-works h2 {
+        margin-top: 0;
+        margin-bottom: 16px;
+        color: #111827;
+        font-size: 20px;
+    }
+
+    .steps {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+    }
+
+    .step {
+        text-align: center;
+        flex: 1;
+    }
+
+    .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        background: #3B82F6;
+        color: white;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+    }
+
+    .step-description {
+        font-size: 14px;
+        color: #6B7280;
+    }
+
+    .related-tools {
+        margin: 32px 0;
+    }
+
+    .related-tools h2 {
+        margin-bottom: 16px;
+        color: #111827;
+        font-size: 20px;
+    }
+
+    .related-tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 16px;
+    }
+
+    .related-tool {
+        text-align: center;
+        padding: 16px;
+        border: 1px solid #E5E7EB;
+        border-radius: 8px;
+        background: white;
+        transition: all 0.2s;
+    }
+
+    .related-tool:hover {
+        border-color: #3B82F6;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .related-tool-icon {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .related-tool h3 {
+        margin-bottom: 4px;
+        font-size: 14px;
+        color: #111827;
+    }
+
+    .related-tool p {
+        font-size: 12px;
+        color: #6B7280;
+        margin: 0;
+    }
 </style>
 
 <div class="converter-layout">
     <div class="converter-header">
         <h1>Split PDF</h1>
-        <p>Extract specific pages and create separate documents.</p>
+        <p>Extract specific pages or split a PDF into multiple files. Choose page ranges or split every page into separate documents.</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
             <div class="upload-icon">✂️</div>
             <div class="upload-text">Select PDF File or Drag & Drop</div>
-            <div class="upload-hint">Upload the PDF to split</div>
+            <div class="upload-hint">Upload the PDF you want to split</div>
             <input type="file" id="fileInput" name="file" accept=".pdf" required>
         </div>
 
         <div class="form-group">
-            <label>Page Range (e.g. "1-3" or "5")</label>
-            <input type="text" name="ranges" placeholder="1-3" required>
+            <label>Page Ranges (e.g. "1-3,5,7-9")</label>
+            <input type="text" name="ranges" placeholder="Leave blank to split all pages">
+            <p class="help-text" style="font-size:12px;color:#6B7280;margin-top:4px;">Examples: "1-3" for pages 1 to 3, "5" for just page 5, "1-3,5,7-9" for multiple ranges</p>
         </div>
 
-        <button type="submit" class="submit-btn">Split & Download</button>
+        <button type="submit" class="submit-btn">Split & Download ZIP</button>
     </form>
 
     <div class="form-ad">
-        <div class="ad-placeholder">📢 Ad Space (300x600)</div>
+        <div class="ad-placeholder">
+            📢 Ad Space (300x600)
+        </div>
+    </div>
+</div>
+
+<div class="how-it-works">
+    <h2>How It Works</h2>
+    <div class="steps">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-description">Upload your PDF</div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-description">Specify page ranges (or leave blank)</div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-description">Download split PDFs as ZIP</div>
+        </div>
+    </div>
+</div>
+
+<div class="related-tools">
+    <h2>Related Tools</h2>
+    <div class="related-tools-grid">
+        <a href="/merge-pdf" class="related-tool">
+            <div class="related-tool-icon">📋</div>
+            <h3>Merge PDF</h3>
+            <p>Combine PDF files</p>
+        </a>
+        <a href="/compress-pdf" class="related-tool">
+            <div class="related-tool-icon">📉</div>
+            <h3>Compress PDF</h3>
+            <p>Reduce PDF file size</p>
+        </a>
+        <a href="/pdf-to-word" class="related-tool">
+            <div class="related-tool-icon">📄→📝</div>
+            <h3>PDF to Word</h3>
+            <p>Convert PDF to editable DOC</p>
+        </a>
     </div>
 </div>
 
 <script>
-    function handleDragOver(e) { e.preventDefault(); document.querySelector('.upload-section').classList.add('dragover'); }
-    function handleDragLeave(e) { document.querySelector('.upload-section').classList.remove('dragover'); }
-    function handleDrop(e) { e.preventDefault(); document.querySelector('.upload-section').classList.remove('dragover'); document.getElementById('fileInput').files = e.dataTransfer.files; }
+    function handleDragOver(e) {
+        e.preventDefault();
+        document.querySelector('.upload-section').classList.add('dragover');
+    }
+    function handleDragLeave(e) {
+        document.querySelector('.upload-section').classList.remove('dragover');
+    }
+    function handleDrop(e) {
+        e.preventDefault();
+        document.querySelector('.upload-section').classList.remove('dragover');
+        document.getElementById('fileInput').files = e.dataTransfer.files;
+    }
 </script>
+
+{% block schema_json_ld %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Split PDF - Snapverto",
+  "description": "Split PDF files into separate pages or ranges. Free online PDF splitter, no registration required.",
+  "applicationCategory": "FileConverter",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Snapverto"
+  }
+}
+</script>
+{% endblock %}
 
 {% endblock %}

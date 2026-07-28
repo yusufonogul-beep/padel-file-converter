@@ -1,59 +1,25 @@
-{% extends "base.html" %}
-{% block content %}
-
-<style>
-    .converter-layout { max-width: 600px; margin: 0 auto; }
-    .converter-header { text-align: center; margin-bottom: 40px; }
-    .converter-header h1 { margin-bottom: 8px; }
-    .converter-header p { font-size: 14px; color: #6B7280; }
-    .upload-section { background: #FFFFFF; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: all 200ms; }
-    .upload-section:hover { border-color: #3B82F6; background: #F0F9FF; }
-    .upload-section.dragover { border-color: #3B82F6; background: #F0F9FF; }
-    .upload-icon { font-size: 48px; margin-bottom: 12px; }
-    .upload-text { font-size: 16px; font-weight: 500; color: #111827; margin-bottom: 4px; }
-    .upload-hint { font-size: 14px; color: #6B7280; }
-    input[type="file"] { display: none; }
-    .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; color: #111827; }
-    .form-group input { width: 100%; padding: 8px 12px; border: 1px solid #D1D5DB; border-radius: 4px; font-size: 14px; }
-    .form-group input:focus { outline: none; border-color: #3B82F6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
-    .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
-    .submit-btn:hover { background: #1E40AF; }
-    .form-ad { margin: 40px 0; text-align: center; }
-    .ad-placeholder { background: #F3F4F6; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; color: #9CA3AF; font-size: 14px; height: 300px; display: flex; align-items: center; justify-content: center; }
-</style>
-
-<div class="converter-layout">
-    <div class="converter-header">
-        <h1>PDF to Image</h1>
-        <p>Convert each PDF page to separate JPG images. High quality.</p>
-    </div>
-
-    <form method="post" enctype="multipart/form-data">
-        <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
-            <div class="upload-icon">📄↔️🖼️</div>
-            <div class="upload-text">Select PDF File or Drag & Drop</div>
-            <div class="upload-hint">Upload the PDF to convert</div>
-            <input type="file" id="fileInput" name="file" accept=".pdf" required>
-        </div>
-
-        <div class="form-group">
+{% extends "base_converter.html" %}
+{% set title = "PDF to JPG - Snapverto" %}
+{% set meta_desc = "Convert PDF pages to JPG images. Free online PDF to image converter." %}
+{% set h1 = "PDF to JPG" %}
+{% set description = "Convert each page of your PDF to high-quality JPG images." %}
+{% set upload_icon = "📄↔️🖼️" %}
+{% set upload_text = "Select PDF File or Drag & Drop" %}
+{% set upload_hint = "Upload the PDF to convert" %}
+{% set accept_ext = ".pdf" %}
+{% set button_text = "Convert & Download" %}
+{% set step2_desc = "Choose image resolution (DPI)" %}
+{% set extra_fields = """
+<div class="form-group">
             <label>Resolution (DPI, default 150)</label>
             <input type="number" name="dpi" min="72" max="300" value="150">
         </div>
-
-        <button type="submit" class="submit-btn">Convert & Download</button>
-    </form>
-
-    <div class="form-ad">
-        <div class="ad-placeholder">📢 Ad Space (300x600)</div>
-    </div>
-</div>
-
-<script>
-    function handleDragOver(e) { e.preventDefault(); document.querySelector('.upload-section').classList.add('dragover'); }
-    function handleDragLeave(e) { document.querySelector('.upload-section').classList.remove('dragover'); }
-    function handleDrop(e) { e.preventDefault(); document.querySelector('.upload-section').classList.remove('dragover'); document.getElementById('fileInput').files = e.dataTransfer.files; }
-</script>
-
-{% endblock %}
+""" %}
+{% set related_tools = [
+{'url': '/jpg-to-pdf', 'icon': '🖼️→📄', 'name': 'JPG to PDF', 'desc': 'Convert images to PDF'},
+{'url': '/pdf-to-word', 'icon': '📄→📝', 'name': 'PDF to Word', 'desc': 'Convert PDF to editable DOC'},
+{'url': '/compress-pdf', 'icon': '📉', 'name': 'Compress PDF', 'desc': 'Reduce PDF file size'}
+] %}
+{% set schema_name = "PDF to JPG - Snapverto" %}
+{% set schema_desc = "Convert PDF pages to JPG images. Free online PDF to image converter." %}
+{% block content %}{{ super() }}{% endblock %}

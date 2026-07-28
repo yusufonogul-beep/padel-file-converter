@@ -1,50 +1,22 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base_converter.html" %}
+{% set title = "JPG to PDF - Snapverto" %}
+{% set meta_desc = "Convert JPG images to PDF. Free online image to PDF converter." %}
+{% set h1 = "JPG to PDF" %}
+{% set description = "Combine one or more JPG images into a single PDF document." %}
+{% set upload_icon = "🖼️→📄" %}
+{% set upload_text = "Select Image Files or Drag & Drop" %}
+{% set upload_hint = "Upload one or more JPG files" %}
+{% set accept_ext = ".jpg,.jpeg" %}
+{% set button_text = "Create PDF & Download" %}
+{% set step2_desc = "Arrange your images in order" %}
+{% set extra_fields = """
 
-<style>
-    .converter-layout { max-width: 600px; margin: 0 auto; }
-    .converter-header { text-align: center; margin-bottom: 40px; }
-    .converter-header h1 { margin-bottom: 8px; }
-    .converter-header p { font-size: 14px; color: #6B7280; }
-    .upload-section { background: #FFFFFF; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; text-align: center; margin-bottom: 24px; cursor: pointer; transition: all 200ms; }
-    .upload-section:hover { border-color: #3B82F6; background: #F0F9FF; }
-    .upload-section.dragover { border-color: #3B82F6; background: #F0F9FF; }
-    .upload-icon { font-size: 48px; margin-bottom: 12px; }
-    .upload-text { font-size: 16px; font-weight: 500; color: #111827; margin-bottom: 4px; }
-    .upload-hint { font-size: 14px; color: #6B7280; }
-    input[type="file"] { display: none; }
-    .submit-btn { width: 100%; padding: 12px 24px; background: #3B82F6; color: #FFFFFF; border: none; border-radius: 6px; font-size: 16px; font-weight: 500; cursor: pointer; transition: all 200ms; margin-bottom: 24px; }
-    .submit-btn:hover { background: #1E40AF; }
-    .form-ad { margin: 40px 0; text-align: center; }
-    .ad-placeholder { background: #F3F4F6; border: 2px dashed #D1D5DB; border-radius: 8px; padding: 40px; color: #9CA3AF; font-size: 14px; height: 300px; display: flex; align-items: center; justify-content: center; }
-</style>
-
-<div class="converter-layout">
-    <div class="converter-header">
-        <h1>Image to PDF</h1>
-        <p>Combine multiple images into a single PDF.</p>
-    </div>
-
-    <form method="post" enctype="multipart/form-data">
-        <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
-            <div class="upload-icon">🖼️→📄</div>
-            <div class="upload-text">Select Image Files or Drag & Drop</div>
-            <div class="upload-hint">Upload one or more images</div>
-            <input type="file" id="fileInput" name="files" accept=".jpg,.jpeg" multiple required>
-        </div>
-
-        <button type="submit" class="submit-btn">Create PDF & Download</button>
-    </form>
-
-    <div class="form-ad">
-        <div class="ad-placeholder">📢 Ad Space (300x600)</div>
-    </div>
-</div>
-
-<script>
-    function handleDragOver(e) { e.preventDefault(); document.querySelector('.upload-section').classList.add('dragover'); }
-    function handleDragLeave(e) { document.querySelector('.upload-section').classList.remove('dragover'); }
-    function handleDrop(e) { e.preventDefault(); document.querySelector('.upload-section').classList.remove('dragover'); document.getElementById('fileInput').files = e.dataTransfer.files; }
-</script>
-
-{% endblock %}
+""" %}
+{% set related_tools = [
+{'url': '/pdf-to-jpg', 'icon': '📄↔️🖼️', 'name': 'PDF to JPG', 'desc': 'Convert PDF to images'},
+{'url': '/image-converter', 'icon': '🎨', 'name': 'Image Converter', 'desc': 'Convert between image formats'},
+{'url': '/image-compressor', 'icon': '📦', 'name': 'Compress Images', 'desc': 'Reduce image file size'}
+] %}
+{% set schema_name = "JPG to PDF - Snapverto" %}
+{% set schema_desc = "Convert JPG images to PDF. Free online image to PDF converter." %}
+{% block content %}{{ super() }}{% endblock %}

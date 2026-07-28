@@ -1,6 +1,6 @@
 {% extends "base.html" %}
-{% block title %}Merge PDF Files Online - Snapverto{% endblock %}
-{% block meta_description %}Merge multiple PDF files into one document quickly and easily. Free online PDF merger with no watermarks or registration.{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block meta_description %}{{ meta_desc }}{% endblock %}
 {% block content %}
 
 <style>
@@ -63,6 +63,36 @@
 
     input[type="file"] {
         display: none;
+    }
+
+    .form-group {
+        margin-bottom: 16px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #111827;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 8px 12px;
+        border: 1px solid #D1D5DB;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #3B82F6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
     }
 
     .submit-btn {
@@ -196,19 +226,21 @@
 
 <div class="converter-layout">
     <div class="converter-header">
-        <h1>Merge PDF Files</h1>
-        <p>Combine multiple PDF documents into one seamless file. Maintains original quality and order.</p>
+        <h1>{{ h1 }}</h1>
+        <p>{{ description }}</p>
     </div>
 
     <form method="post" enctype="multipart/form-data">
         <div class="upload-section" onclick="document.getElementById('fileInput').click()" ondrop="handleDrop(event)" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)">
-            <div class="upload-icon">📋</div>
-            <div class="upload-text">Select PDF Files or Drag & Drop</div>
-            <div class="upload-hint">Choose two or more PDF files to merge</div>
-            <input type="file" id="fileInput" name="files" accept=".pdf" multiple required>
+            <div class="upload-icon">{{ upload_icon }}</div>
+            <div class="upload-text">{{ upload_text }}</div>
+            <div class="upload-hint">{{ upload_hint }}</div>
+            <input type="file" id="fileInput" name="file" accept="{{ accept_ext }}" required>
         </div>
 
-        <button type="submit" class="submit-btn">Merge & Download</button>
+        {{ extra_fields }}
+
+        <button type="submit" class="submit-btn">{{ button_text }}</button>
     </form>
 
     <div class="form-ad">
@@ -223,15 +255,15 @@
     <div class="steps">
         <div class="step">
             <div class="step-number">1</div>
-            <div class="step-description">Upload your PDF files</div>
+            <div class="step-description">Upload your file(s)</div>
         </div>
         <div class="step">
             <div class="step-number">2</div>
-            <div class="step-description">Merge them in order</div>
+            <div class="step-description">{{ step2_desc }}</div>
         </div>
         <div class="step">
             <div class="step-number">3</div>
-            <div class="step-description">Download the combined PDF</div>
+            <div class="step-description">Download your result</div>
         </div>
     </div>
 </div>
@@ -239,21 +271,7 @@
 <div class="related-tools">
     <h2>Related Tools</h2>
     <div class="related-tools-grid">
-        <a href="/split-pdf" class="related-tool">
-            <div class="related-tool-icon">✂️</div>
-            <h3>Split PDF</h3>
-            <p>Extract pages from PDF</p>
-        </a>
-        <a href="/compress-pdf" class="related-tool">
-            <div class="related-tool-icon">📉</div>
-            <h3>Compress PDF</h3>
-            <p>Reduce PDF file size</p>
-        </a>
-        <a href="/pdf-to-word" class="related-tool">
-            <div class="related-tool-icon">📄→📝</div>
-            <h3>PDF to Word</h3>
-            <p>Convert PDF to editable DOC</p>
-        </a>
+        {related_tools_content}
     </div>
 </div>
 
@@ -272,26 +290,6 @@
     }
 </script>
 
-{% block schema_json_ld %}
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Merge PDF Files - Snapverto",
-  "description": "Merge multiple PDF files into one document quickly and easily. Free online PDF merger with no watermarks or registration.",
-  "applicationCategory": "FileConverter",
-  "operatingSystem": "Web",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "author": {
-    "@type": "Organization",
-    "name": "Snapverto"
-  }
-}
-</script>
-{% endblock %}
+{schema_json_ld}
 
 {% endblock %}

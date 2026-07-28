@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Contact Snapverto{% endblock %}
+{% block meta_description %}Get in touch with Snapverto support. Email us at support@snapverto.pro for any questions or feedback.{% endblock %}
+{% block canonical %}{{ request.url }}{% endblock %}
+{% block content %}
+
+<style>
+    .contact-content { max-width: 600px; margin: 0 auto; text-align: center; }
+    .contact-content h1 { margin-bottom: 24px; color: #111827; }
+    .contact-content p { margin-bottom: 16px; line-height: 1.6; color: #6B7280; }
+    .contact-button {
+        display: inline-block;
+        background: #3B82F6;
+        color: #FFFFFF;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.2s;
+    }
+    .contact-button:hover {
+        background: #1E40AF;
+    }
+</style>
+
+<div class="contact-content">
+    <h1>Contact Snapverto</h1>
+    <p>
+        Have a question, suggestion, or need assistance? We're here to help.
+        Reach out to us via email and we'll get back to you as soon as possible.
+    </p>
+    <a href="mailto:support@snapverto.pro" class="contact-button">Send Email</a>
+    <p style="margin-top: 24px; font-size: 14px; color: #9CA3AF;">
+        support@snapverto.pro
+    </p>
+</div>
+
+{% endblock %}
